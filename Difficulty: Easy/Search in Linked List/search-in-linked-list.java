@@ -7,17 +7,19 @@
     Node(int d)  { data = d;  next = null; }
 }
 */
+
+//Recursive Code
 class Solution {
     static boolean searchKey(int n, Node head, int key) {
         // Code here
-        Node temp=head;
-        
-        while(temp!=null){
-            if(temp.data==key){
-                return true;
-            }
-            temp=temp.next;
+        if(head==null){
+            return false;
         }
-        return false;
+        
+        if(head.data==key){
+            return true;
+        }
+        
+        return searchKey(n,head.next,key);
     }
 }
