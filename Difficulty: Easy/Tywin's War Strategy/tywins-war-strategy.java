@@ -1,32 +1,33 @@
 class Solution {
     public int minSoldiers(int[] arr, int k) {
         // code here
-        int n = arr.length;
-        int required = (n + 1) / 2; 
+        int n=arr.length;
+        int luckyNeeded=(n+1)/2;
         
-        int luckyCount = 0;
-        List<Integer> costs = new ArrayList<>();
+        int luckyCount=0;
         
+        List<Integer>costs=new ArrayList<>();
         
-        for (int soldiers : arr) {
-            if (soldiers % k == 0) {
+        for(int i=0;i<n;i++){
+            if((arr[i]%k)==0 ){
                 luckyCount++;
-            } else {
-                costs.add((k - soldiers % k) % k);
+            }else{
+                costs.add(k-(arr[i]%k));
             }
         }
-        
-         if (luckyCount >= required) {
+        if(luckyCount>=luckyNeeded){
             return 0;
         }
-         Collections.sort(costs);
-        int totalCost = 0;
-        int needed = required - luckyCount;
-        for (int i = 0; i < needed; i++) {
-            totalCost += costs.get(i);
+        
+        int req=luckyNeeded-luckyCount;
+        Collections.sort(costs);
+        
+        int total=0;
+        
+        for(int i=0;i<req;i++){
+          total+=costs.get(i);  
         }
         
-        return totalCost;
+        return total;
     }
 }
-
