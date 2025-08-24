@@ -9,6 +9,8 @@ class Solution {
             }else{
                 bloom+=(count/k);
                 count=0;
+                
+                
             }
         }
         bloom+=count/k;
