@@ -1,32 +1,29 @@
 class Solution {
-    public ArrayList<Integer> nextLargerElement(int[] arr) {
+    public ArrayList<Integer> nextGreater(int[] arr) {
         // code here
-        int n=arr.length;
-        
-        ArrayList<Integer>ans=new ArrayList<>();
-        
-        int [] newArr=new int[2*n];
-        
-        for(int i=0;i<n;i++){
-            newArr[i]=arr[i];
-        }
-        
-        for(int i=n;i<2*n;i++){
-            newArr[i]=arr[i-n];
-        }
-        
-        
-        for(int i=0;i<n;i++){
-            int nge=-1;
-            for(int j=i+1;j<2*n;j++){
-                if(arr[i]<newArr[j]){
-                    nge=newArr[j];
+        int c=0;
+        ArrayList<Integer>ar=new ArrayList<>();
+        for(int i=0;i<arr.length;i++){
+            for(int j=i;j<arr.length;j++){
+                if(arr[i]<arr[j]){
+                    ar.add(arr[j]);
+                    c=1;
                     break;
                 }
             }
-            ans.add(nge);
-
+            if(c==0){
+                for(int j=0;j<i;j++){
+                    if(arr[j]>arr[i]){
+                        c=1;
+                        ar.add(arr[j]);
+                        break;
+                    }
+                }
+            }
+            if(c==0)ar.add(-1);
+            c=0;
         }
-        return ans;
+      
+        return ar;
     }
 }
